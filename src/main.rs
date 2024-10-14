@@ -24,9 +24,10 @@ fn min_adjacent_sum(data: &[i32]) -> (i32, usize, usize) {
     (min_sum, min_index, min_index + 1)
 }
 
-fn display_vector_info(data: &[i32]) {
+fn display_vector_info(data: &[i32], iteration: usize) {
     let (min_sum, index1, index2) = min_adjacent_sum(data);
 
+    println!("--- Example {} ---", iteration);
     print!("indexes: ");
     for i in 0..data.len() {
         print!("{:>3}.", i);
@@ -39,12 +40,12 @@ fn display_vector_info(data: &[i32]) {
     }
     println!();
 
-    print!("indexes: ");
+    print!("markers: ");
     for i in 0..data.len() {
         if i == index1 {
-            print!("\\__");
+            print!("\\___ ");
         } else if i == index2 {
-            print!("__/");
+            print!("___/");
         } else {
             print!("    ");
         }
@@ -55,10 +56,13 @@ fn display_vector_info(data: &[i32]) {
         "min adjacent sum={}+{}={} at indexes:{}:{}",
         data[index1], data[index2], min_sum, index1, index2
     );
+    println!(); 
 }
 
 fn main() {
-    let data = gen_random_vector(20);
+    for iteration in 1..=4 {
+        let data = gen_random_vector(20);
 
-    display_vector_info(&data);
+        display_vector_info(&data, iteration);
+    }
 }
